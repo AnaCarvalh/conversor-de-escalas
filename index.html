@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+	 	<meta charset="utf-8" />
+	 	<style>
+	 		form{
+	 			border: 5px double green; 
+	 			background-color: #B9D8B1; 
+	 			padding: 4px;
+	 			text-align:left;
+	 			left:37%;
+	 			top:29%;
+	 			width:270px;
+				height:270px;
+	 		}
+	 		label{
+	 			margin-top: 8px;
+	 		}
+	 		input{
+	 			margin-top: 8px; 
+	 			background-color: #BDC39D
+	 		}
+	 	</style>
+		<title> Conversor de Escalas Termométricas </title>
+	</head>
+
+	<body>
+		<form name="convert">
+			<div>
+				<h3><a name="titulo"></a><img src="temp.png" height="30" width= auto>Conversor de Temperatura</h1>
+			</div>
+
+			<div>
+				<label>Fahrenheit:</label>
+				<input type="text" name="tempfahrenheit" size="7" onchange="conversao('fah')"> 
+			</div>
+
+			<div>
+				<label>Celsius:</label>
+				<input type="text" name="tempcelsius" size="7" onchange="conversao('cel')">
+			</div>
+
+			<div>
+				<label>Kelvin:</label>
+				<input type="text" name="tempkelvin" size="7" onchange="conversao('kel')">
+			</div>
+		<br /><br />
+		<input type="button" value="limpar" onclick="clearAll();">
+		</form>
+
+	<script type="text/javascript">
+		
+		function conversao(temp)
+	{
+	 
+	var fahrenheit = document.convert.tempfahrenheit;
+	var celsius = document.convert.tempcelsius;
+	var kelvin = document.convert.tempkelvin;
+
+
+	if (temp == "fah") 
+	{
+	    celsius.value = Math.round((fahrenheit.value - 32) * (5/9));
+		kelvin.value = Math.round((parseInt(celsius.value) + 459.67) * (5/9));
+	} 
+	else if (temp == "kel") 
+	 {
+		fahrenheit.value = Math.round((parseInt(celsius.value) * (9/5)) -  459.67);
+		celsius.value = Math.round((fahrenheit.value - 32) * (5/9));
+		
+	 }
+	else
+	 {
+		fahrenheit.value = Math.round((parseInt(celsius.value) * (9/5)) + 32);
+		kelvin.value = Math.round((parseInt(celsius.value) + 273));
+	 }
+	}
+
+	function clearAll()
+	{
+	document.convert.tempfahrenheit.value="";
+	document.convert.tempcelsius.value="";
+	document.convert.tempkelvin.value="";
+	}
+	</script>
+	</body>
+</html>
